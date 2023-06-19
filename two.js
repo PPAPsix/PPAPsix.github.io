@@ -104,7 +104,7 @@ const Barrage = class {
                                 return
                             }
                             //this.ws.send(JSON.stringify({ action: 'message', message: message }));
-                            console.log(JSON.stringify({ action: 'message', message: message }))
+                            //console.log(JSON.stringify({ action: 'message', message: message }))
                             
 let xhr= new XMLHttpRequest();
 // methods：GET/POST请求方式等，url：请求地址，true异步（可为false同步）
