@@ -111,7 +111,7 @@ let xhr= new XMLHttpRequest();
 xhr.open("post","http://www.api.le123.fun/tp1/public/index.php/api/test" ,true);
 xhr.send(JSON.stringify({ action: 'message', message: message }));                                            // 发送
 xhr.onreadystatechange = function() {                  // 判断
-    if (xhr.readyState == 4 && ajax.status == 100) {   // 成功，接收到数据
+    if (xhr.readyState == 4 && xhr.status == 100) {   // 成功，接收到数据
             console.log(xhr.response);                 // 查看返回的数据(可输出 xhr 哈)
         console.log('发送成功了');
             //JSON.parse(xhr.response);                // 如果数据为字符串的对象，可转换一下
