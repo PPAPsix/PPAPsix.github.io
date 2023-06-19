@@ -105,7 +105,7 @@ const Barrage = class {
                             }
                             //this.ws.send(JSON.stringify({ action: 'message', message: message }));
                             //console.log(JSON.stringify({ action: 'message', message: message }))
-                            
+                            console.log('httpcome!~!!!!!')
 let xhr= new XMLHttpRequest();
 // methods：GET/POST请求方式等，url：请求地址，true异步（可为false同步）
 xhr.open("post","http://www.api.le123.fun/tp1/public/index.php/api/test" ,true);
