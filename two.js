@@ -79,7 +79,8 @@ const Barrage = class {
                         if (this.eventRegirst.join) {
                             this.event['join'](msg)
                         }
-                        this.ws.send(JSON.stringify({ action: 'join', message: msg }));
+                        //this.ws.send(JSON.stringify({ action: 'join', message: msg }));
+                        console.log('新用户')
                     }
                 }
             });
