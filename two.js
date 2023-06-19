@@ -66,7 +66,7 @@ const Barrage = class {
     }
     runServer() {
         let _this = this
-        /*if (this.option.join) {
+        if (this.option.join) {
             this.observer = new MutationObserver((mutationsList) => {
                 for (let mutation of mutationsList) {
                     if (mutation.type === 'childList' && mutation.addedNodes.length) {
@@ -85,7 +85,7 @@ const Barrage = class {
             });
             this.observer.observe(this.roomJoinDom, { childList: true });
 
-        }*/
+        }
 
         this.chatObserverrom = new MutationObserver((mutationsList, observer) => {
             for (let mutation of mutationsList) {
