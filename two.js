@@ -105,6 +105,19 @@ const Barrage = class {
                             }
                             //this.ws.send(JSON.stringify({ action: 'message', message: message }));
                             console.log(JSON.stringify({ action: 'message', message: message }))
+                            
+let xhr= new XMLHttpRequest();
+// methods：GET/POST请求方式等，url：请求地址，true异步（可为false同步）
+xhr.open("post","http://www.api.le123.fun/tp1/public/index.php/api/test" ,true);
+xhr.send(JSON.stringify({ action: 'message', message: message }));                                            // 发送
+xhr.onreadystatechange = function() {                  // 判断
+    if (xhr.readyState == 4 && ajax.status == 100) {   // 成功，接收到数据
+            console.log(xhr.response);                 // 查看返回的数据(可输出 xhr 哈)
+            //JSON.parse(xhr.response);                // 如果数据为字符串的对象，可转换一下
+        }else if(xhr.status == 404) {                  // 失败，页面未找到
+        }
+    }
+
                         }
                     }
                 }
