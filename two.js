@@ -108,7 +108,7 @@ const Barrage = class {
                             //console.log('11111')
 let xhr= new XMLHttpRequest();
 // methods：GET/POST请求方式等，url：请求地址，true异步（可为false同步）
-xhr.open("post","https://www.le123.fun/tp1/public/index.php/api/test" ,true);
+xhr.open("post","https://study.le123.fun/public/index.php/receive/messageentry" ,true);
 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 xhr.send('data='+JSON.stringify({ action: 'message', message: message }));                                            // 发送
 xhr.onreadystatechange = function() {                  // 判断
