@@ -53,19 +53,23 @@ const Barrage = class {
   this.observer && this.observer.disconnect();
   this.chatObserverrom && this.chatObserverrom.disconnect();
   let _this = this;
-  if (_this.ws.readyState === 1) { // 判断WebSocket是否为连接状态
-    _this.ws.close(); // 如果WebSocket已连接，在重新连接之前先关闭连接
+  if (_this.ws.readyState === 1) {
+    _this.isReconnecting = true; // 标记正在进行重新连接操作
+    _this.ws.close();
   }
   this.timer = setInterval(() => {
     console.log('正在等待服务器启动..')
-    _this.ws = new WebSocket(_this.wsurl);
-    console.log('状态 ->', _this.ws.readyState)
-    setTimeout(() => {
-      if (_this.ws.readyState === 1) {
-        _this.openWs()
-      }
-    }, 2000)
-
+    if (!_this.isReconnecting) { // 检测是否正在进行重新连接操作
+      _this.isReconnecting = true;
+      _this.ws = new WebSocket(_this.wsurl);
+      console.log('状态 ->', _this.ws.readyState)
+      setTimeout(() => {
+        _this.isReconnecting = false; // 重新连接完成后取消标记
+        if (_this.ws.readyState === 1) {
+          _this.openWs()
+        }
+      }, 2000)
+    }
   }, this.timeinterval)
     }
     runServer() {
