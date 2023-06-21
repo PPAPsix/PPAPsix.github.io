@@ -100,10 +100,7 @@ const Barrage = class {
                             if (_this.option.message === false && !message.isGift) {
                                 return
                             }
-                            let url = window.location.href
-                            //let url = url.split('/')
-                            //message['live_id'] = url.pop()
-                            message['live_id'] = url
+                            message['live_id'] = window.liveId
                             this.ws.send(JSON.stringify({ action: 'message', message: message }));
                         }
                     }
