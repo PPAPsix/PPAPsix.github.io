@@ -57,7 +57,7 @@ const Barrage = class {
             this.ws = new WebSocket(wsurl);
             console.log('状态 ->', this.ws.readyState)
             setTimeout(() => {
-                if (this.ws.readyState === 1) {
+                if (_this.ws.readyState === 1) {
                     _this.openWs()
                 }
             }, 2000)
