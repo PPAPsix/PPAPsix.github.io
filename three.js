@@ -59,7 +59,7 @@ const Barrage = class {
       _this.ws.close();
     }
   } catch (e) {
-    console.log('关闭WebSocket连接时发生异常：', e);
+    console.log('关闭WebSocket连接发生异常：', e);
   }
   this.timer = setInterval(() => {
     console.log('正在等待服务器启动..')
