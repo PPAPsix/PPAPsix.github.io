@@ -46,22 +46,30 @@ const Barrage = class {
         this.runServer()
     }
     wsClose() {
-        console.log('服务器断开')
-	if (this.timer !== null) {
-            return
-        }
-        this.observer && this.observer.disconnect();
-        this.chatObserverrom && this.chatObserverrom.disconnect();
-        this.timer = setInterval(() => {
-            console.log('正在等待服务器启动..')
-            this.ws = new WebSocket(wsurl);
-            console.log('状态 ->', this.ws.readyState)
-            setTimeout(() => {
-                if (this.ws.readyState === 1) {
-                    openWs()
-                }
-            }, 2000)
-        }, this.timeinterval)
+        console.log('服务器断开');
+  if (this.timer !== null) {
+    return;
+  }
+  this.observer && this.observer.disconnect();
+  this.chatObserverrom && this.chatObserverrom.disconnect();
+  
+  // 检查WebSocket状态，避免多次连接同一个Websocket对象
+  if (this.ws.readyState === WebSocket.CLOSING || this.ws.readyState === WebSocket.CLOSED) {
+    console.log('WebSocket is already in CLOSING or CLOSED state.');
+    return;
+  }
+
+  this.timer = setInterval(() => {
+    console.log('正在等待服务器启动..');
+    this.ws = new WebSocket(this.wsurl);
+    console.log('状态 ->', this.ws.readyState);
+    setTimeout(() => {
+      if (this.ws.readyState === 1) {
+        // 添加this以表示正确的作用域
+        this.openWs();
+      }
+    }, 2000);
+  }, this.timeinterval);
     }
     runServer() {
         let _this = this
