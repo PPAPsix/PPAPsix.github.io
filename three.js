@@ -47,22 +47,26 @@ const Barrage = class {
     }
     wsClose() {
         console.log('服务器断开')
-        if (this.timer !== null) {
-            return
-        }
-        this.observer && this.observer.disconnect();
-        this.chatObserverrom && this.chatObserverrom.disconnect();
-        this.timer = setInterval(() => {
-            console.log('正在等待服务器启动..')
-            _this.ws = new WebSocket(_this.wsurl);
-            console.log('状态 ->', this.ws.readyState)
-            setTimeout(() => {
-                if (_this.ws.readyState === 1) {
-                    _this.openWs()
-                }
-            }, 2000)
+  if (this.timer !== null) {
+    return
+  }
+  this.observer && this.observer.disconnect();
+  this.chatObserverrom && this.chatObserverrom.disconnect();
+  let _this = this;
+  if (_this.ws.readyState === 1) { // 判断WebSocket是否为连接状态
+    _this.ws.close(); // 如果WebSocket已连接，在重新连接之前先关闭连接
+  }
+  this.timer = setInterval(() => {
+    console.log('正在等待服务器启动..')
+    _this.ws = new WebSocket(_this.wsurl);
+    console.log('状态 ->', _this.ws.readyState)
+    setTimeout(() => {
+      if (_this.ws.readyState === 1) {
+        _this.openWs()
+      }
+    }, 2000)
 
-        }, this.timeinterval)
+  }, this.timeinterval)
     }
     runServer() {
         let _this = this
