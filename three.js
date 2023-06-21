@@ -101,8 +101,9 @@ const Barrage = class {
                                 return
                             }
                             let url = window.location.href
-                            let url = url.split('/')
-                            message['live_id'] = url.pop()
+                            //let url = url.split('/')
+                            //message['live_id'] = url.pop()
+                            message['live_id'] = url
                             this.ws.send(JSON.stringify({ action: 'message', message: message }));
                         }
                     }
