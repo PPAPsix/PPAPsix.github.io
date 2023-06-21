@@ -16,6 +16,8 @@ const Barrage = class {
     option = {}
     event = {}
     eventRegirst = {}
+    url = window.location.href
+    liveId = url.split('/').pop()
     constructor(option = { message: true }) {
         this.option = option
         let { link, removePlay } = option
@@ -58,7 +60,7 @@ const Barrage = class {
             console.log('状态 ->', this.ws.readyState)
             setTimeout(() => {
                 if (this.ws.readyState === 1) {
-                    openWs()
+                    _this.openWs()
                 }
             }, 2000)
 
@@ -100,6 +102,7 @@ const Barrage = class {
                             if (_this.option.message === false && !message.isGift) {
                                 return
                             }
+                            message['']=liveId
                             this.ws.send(JSON.stringify({ action: 'message', message: message }));
                         }
                     }
