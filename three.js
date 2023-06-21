@@ -16,8 +16,6 @@ const Barrage = class {
     option = {}
     event = {}
     eventRegirst = {}
-    url = window.location.href
-    liveId = url.split('/').pop()
     constructor(option = { message: true }) {
         this.option = option
         let { link, removePlay } = option
@@ -102,7 +100,9 @@ const Barrage = class {
                             if (_this.option.message === false && !message.isGift) {
                                 return
                             }
-                            message['']=liveId
+                            let url = window.location.href
+                            message['live_id'] = url.split('/').pop()
+                            url = window.location.href
                             this.ws.send(JSON.stringify({ action: 'message', message: message }));
                         }
                     }
