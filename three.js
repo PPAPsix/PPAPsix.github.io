@@ -54,7 +54,7 @@ const Barrage = class {
         this.chatObserverrom && this.chatObserverrom.disconnect();
         this.timer = setInterval(() => {
             console.log('正在等待服务器启动..')
-            this.ws = new WebSocket(wsurl);
+            _this.ws = new WebSocket(_this.wsurl);
             console.log('状态 ->', this.ws.readyState)
             setTimeout(() => {
                 if (_this.ws.readyState === 1) {
