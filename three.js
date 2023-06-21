@@ -47,36 +47,18 @@ const Barrage = class {
     }
     wsClose() {
         console.log('服务器断开')
-  this.observer && this.observer.disconnect();
-  this.chatObserverrom && this.chatObserverrom.disconnect();
-  let _this = this;
-  try {
-    if (_this.ws.readyState === 1) {
-      _this.isReconnecting = true;
-      _this.ws.close();
-    }
-  } catch (e) {
-    console.log('关闭WebSocket连接发生异常：', e);
-  }
-  this.timer = setInterval(() => {
-    console.log('正在等待服务器启动..')
-    if (!_this.isReconnecting) {
-      _this.isReconnecting = true;
-      try {
-        _this.ws = new WebSocket(_this.wsurl);
-        console.log('状态 ->', _this.ws.readyState)
-        setTimeout(() => {
-          _this.isReconnecting = false;
-          if (_this.ws.readyState === 1) {
-            _this.openWs()
-          }
-        }, 2000)
-      } catch (e) {
-        console.log('重新连接WebSocket时发生异常：', e);
-        _this.isReconnecting = false;
-      }
-    }
-  }, this.timeinterval)
+        this.observer && this.observer.disconnect();
+        this.chatObserverrom && this.chatObserverrom.disconnect();
+        this.timer = setInterval(() => {
+            console.log('正在等待服务器启动..')
+            this.ws = new WebSocket(wsurl);
+            console.log('状态 ->', this.ws.readyState)
+            setTimeout(() => {
+                if (this.ws.readyState === 1) {
+                    openWs()
+                }
+            }, 2000)
+        }, this.timeinterval)
     }
     runServer() {
         let _this = this
