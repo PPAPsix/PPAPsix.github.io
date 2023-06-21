@@ -1,10 +1,8 @@
 const Barrage = class {
-    constructor(option = { message: true }) {
+    constructor(option = { message: true, link: 'ws://127.0.0.1:9527' }) {
         this.option = option
-        let { link, removePlay } = option
-        if (link) {
-            this.wsurl = link
-        }
+        this.wsurl = option.link // 添加这一行代码来初始化 this.wsurl 属性
+        let { removePlay } = option
         if (removePlay) {
             document.querySelector('.basicPlayer').remove()
         }
