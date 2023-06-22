@@ -4,7 +4,7 @@
 // }
 
 const Barrage = class {
-    wsurl = "ws://110.42.7.206:9527"
+    wsurl = "ws://yhcs.gygame.vip:9527"
     timer = null
     timeinterval = 10 * 1000 // 断线重连轮询间隔
     propsId = null
